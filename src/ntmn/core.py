@@ -1,5 +1,5 @@
 import asyncio
-from datetime import datetime
+import datetime as dt
 from os import environ
 from pathlib import Path
 from ping3 import ping
@@ -17,7 +17,7 @@ FILE_PATH = environ.get(
 )
 DATABASE_URL = environ.get(
     "DATABASE_URL",
-    default=f"sqlite:///{FILE_PATH}/{datetime.now().isoformat()}.sqlite3",
+    default=f"sqlite:///{FILE_PATH}/{dt.datetime.now().isoformat()}.sqlite3",
 )
 PING_TARGET = environ.get(
     "PING_TARGET",
@@ -32,9 +32,9 @@ async def ping_target(
     host: str,
     interface: str = INTERFACE,
     timeout: int = TIMEOUT,
-) -> tuple[datetime, float | None, str]:
+) -> tuple[dt.datetime, float | None, str]:
     """ping target and return timestamp, latency, and status"""
-    timestamp = datetime.now()
+    timestamp = dt.datetime.now(dt.timezone.utc)
     try:
         latency = ping(host, interface=interface, timeout=timeout, unit="ms")
         if latency is None:
