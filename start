@@ -1,4 +1,4 @@
 export DATABASE_FILE=$(ls -dt $PWD/.db/*.sqlite3 | head -n 1)
-echo $DATABASE_FILE
+echo "using $DATABASE_FILE"
 export DATABASE_URL=sqlite:///$DATABASE_FILE
 uvicorn ntmn.api:app --host 0.0.0.0 --reload
