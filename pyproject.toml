@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ntmn"
+version = "0.0.1"
+authors = [
+  { name = "Chris Pappalardo", email = "cpappala@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+description = "Stock price prediction service using technical indicators and AI written in python."
+license = {file = "LICENSE.txt"}
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+  "click==8.1.8",
+  "fastapi==0.115.5",
+  "ping3==4.0.8",
+  "tortoise-orm[asyncpg]==0.22.1",
+]
+
+[project.optional-dependencies]
+test = [
+  "mock>=5.1.0",
+  "mypy>=1.11.1",
+  "pytest>=8.3.2",
+  "pytest-asyncio>=0.24.0",
+  "pytest-cov>=5.0.0",
+  "pytest-mock>=3.14.0",
+  "ruff>=0.5.7",
+  "tortoise-orm-stubs==1.0.2",
+]
+
+[project.urls]
+Documentation = "https://github.com/Chris Pappalardo/ntmn#readme"
+Issues = "https://github.com/Chris Pappalardo/ntmn/issues"
+Source = "https://github.com/Chris Pappalardo/ntmn"
+
+[tool.coverage.run]
+source_pkgs = ["ntmn", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/ntmn/__about__.py",
+]
+
+[tool.coverage.paths]
+ntmn = ["src/ntmn", "*/ntmn/src/ntmn"]
+tests = ["tests", "*/ntmn/tests"]
+
+[tool.coverage.report]
+fail_under = 50
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.distutils.egg_info]
+egg_base = "./"
+
+[tool.mypy]
+# This is the global mypy configuration.
+# Avoid changing this!
+strict = true  # See all the enabled flags `mypy --help | grep -A 10 'Strict mode'`
+disallow_any_unimported = true
+exclude = [
+  "tests",
+]
+
+[[tool.mypy.overrides]]
+module = [
+  "gradio",
+  "mock",
+  "ping3.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff.lint]
+ignore = ["G004"]
