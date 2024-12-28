@@ -54,7 +54,8 @@ async def main() -> None:
     # ping the target and save the result
     while True:
         timestamp, latency, status = await ping_target(PING_TARGET)
-        print(f"{timestamp}: {latency}ms, {status}")
+        latency_str = f"{latency}ms" if latency is not None else "N/A"
+        print(f"{timestamp}: {latency_str}, {status}")
         await Ping.create(timestamp=timestamp, latency=latency, status=status)
         await asyncio.sleep(SLEEP)
 
