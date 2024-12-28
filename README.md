@@ -50,5 +50,5 @@ The app provides the following views:
 
 * [Ping History (100)](http://localhost:8000/pings/)
 * [Ping History (custom)](http://localhost:8000/pings/1000/)
-* [Disconnect history (100)](http://localhost:8000/)
-* [Disconnect history (custom)](http://localhost:8000/1000/)
+* [Disconnect history (100)](http://localhost:8000/disconnects/)
+* [Disconnect history (custom)](http://localhost:8000/disconnects/1000/)
