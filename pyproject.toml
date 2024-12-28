@@ -25,6 +25,7 @@ dependencies = [
   "fastapi==0.115.5",
   "ping3==4.0.8",
   "tortoise-orm[asyncpg]==0.22.1",
+  "uvicorn==0.34.0",
 ]
 
 [project.optional-dependencies]
